@@ -1,0 +1,127 @@
+# CONCEPTS — explained simply
+
+One short section per idea, in the order the project meets them. Each experiment ends
+with three interview questions and answers you can say out loud.
+
+---
+
+## 1. Token
+A **token** is the unit of text a language model actually reads — a "word-piece".
+Think of LEGO: the model can't hold a whole sentence, it holds bricks. A common
+English word like `the` is one brick; a rare word like `unbelievable` might be
+three bricks: `un` + `believ` + `able`.
+Everything an LLM costs — memory, time, money on an API — is counted **per token**,
+not per word.
+
+## 2. Tokenizer
+The **tokenizer** is the machine that cuts text into tokens and gives each one an ID
+number (`"the"` → 262). It is trained *before* the model by looking at lots of text
+and gluing together the pieces that appear most often (this recipe is called
+**BPE — Byte Pair Encoding**). So a tokenizer is good at the languages it saw a lot of.
+- **Vocabulary** = the list of all bricks it knows (GPT-2: 50,257; Qwen2.5: ~151,000).
+- **Byte-level**: GPT-2 and Qwen start from raw bytes, so they can *always* write any
+  text — even if they have to spell a Hindi letter byte by byte.
+- **Encode** = text → IDs. **Decode** = IDs → text. A good tokenizer gives back exactly
+  the text you put in (`decode(encode(text)) == text`).
+
+## 3. UTF-8 bytes (why Hindi starts at a disadvantage)
+Computers store letters as bytes. English letters are 1 byte each. Every Devanagari
+letter or matra (क, ि, ं …) is **3 bytes**. A byte-level tokenizer that never learned
+Hindi merges may need up to 3 tokens for ONE Hindi character.
+
+## 4. Fertility
+**Fertility = tokens ÷ words.** "How many bricks does one word break into?"
+English with an English tokenizer ≈ 1.3. If Hindi is 5, the same sentence costs about
+4× more tokens — so 4× more memory for the KV cache, ~4× more decode steps, and on an
+API, ~4× the bill. Its friend is **characters per token** (higher = each token carries
+more text = cheaper).
+*Caveat:* "word" = split on spaces, and Marathi packs more into one word than English,
+so fertility alone exaggerates a little; tokens for the *same meaning* (parallel
+sentences) is the fairest comparison, which is why we use FLORES+.
+
+## 5. Inference
+**Training** = teaching the model (changing its weights). **Inference** = *using* it:
+weights are frozen and we only run the maths forward to get the next token.
+This whole project is about inference cost.
+
+## 6. Forward pass, logits, greedy decoding
+One **forward pass** = push token IDs through the network once. Out come **logits**:
+one score per vocabulary word for "what comes next". **Greedy decoding** = always pick
+the highest score (argmax). It's deterministic, which makes it perfect for testing.
+
+## 7. Prefill and decode
+Generating text has two phases — like reading a question, then writing the answer:
+- **Prefill**: read the whole prompt in ONE forward pass (all tokens in parallel).
+  Fast per token, because the GPU gets a big chunk of work at once.
+- **Decode**: write the answer **one token at a time**; each new token needs another
+  forward pass. You can't parallelise this — token 5 depends on token 4.
+"Time to first token" ≈ prefill; "tokens per second" ≈ decode.
+
+## 8. Attention, Q/K/V
+In each layer every token asks a **question** (Query), every earlier token holds up a
+**label** (Key) and a **content card** (Value). The question is compared with all
+labels; the best matches' content cards are blended together. A token may only look at
+itself and earlier tokens (**causal mask**) — no peeking at the future.
+
+## 9. KV cache
+During decode, the Keys and Values of old tokens **never change**. Recomputing them for
+every new token is like re-reading a whole book from page 1 each time you add a line.
+The **KV cache** saves them: each step we compute K, V only for the newest token and
+append it. Work per step drops from "whole sequence" to "one token".
+Price: memory. Per token it costs
+**2 (K and V) × layers × KV-heads × head_dim × bytes per number**, multiplied by tokens
+and batch. More tokens (e.g. Hindi under a bad tokenizer) → bigger cache.
+*Classic bug:* the new token's **position id = current cache length** (not 0, not the
+step number from the prompt start minus one).
+
+## 10. Preallocation
+Appending with `torch.cat` builds a **brand-new, bigger** tensor every step and copies
+everything into it — like buying a bigger bookshelf each time you buy a book.
+**Preallocation** buys one shelf big enough for the max length up front and just puts
+each new K/V into the next empty slot (in-place write). Less copying, no memory churn.
+
+## 11. Quantization
+Store numbers with fewer bits. FP32 = 4 bytes, FP16 = 2, **INT8 = 1**.
+To squeeze a vector of decimals into integers −127…127 we keep one **scale** per vector:
+`int8 = round(x / scale)`, `scale = max|x| / 127`; to use it, `x ≈ int8 × scale`
+(**dequantize**). Like writing prices in "units of ₹0.37" instead of exact rupees:
+much shorter, tiny rounding error. For the KV cache: ~4× smaller than FP32, ~2× smaller
+than FP16, at the cost of small errors that *can* flip a later token.
+
+## 12. MHA, GQA, MQA
+Attention has several **heads** (parallel "question askers").
+- **MHA (multi-head)**: every query head has its own K and V head. Biggest cache.
+- **MQA (multi-query)**: all query heads share ONE K/V head. Smallest cache.
+- **GQA (grouped-query)**: in between — e.g. 12 query heads share 4 K/V heads (groups of 3).
+KV memory scales with the number of **KV heads**, so GQA/MQA shrink the cache 3×/12×.
+That's why modern models (Qwen2.5-0.5B: 14 query heads, 2 KV heads) use GQA.
+
+## 13. Memory-bound vs compute-bound
+A GPU has two speeds: how fast it does maths (FLOP/s) and how fast it moves data from
+memory (bandwidth, GB/s).
+- **Compute-bound**: lots of maths per byte loaded (prefill — big matrix × big matrix).
+- **Memory-bound**: little maths per byte (decode with batch 1 — every step must stream
+  ALL weights and the whole KV cache from VRAM to do a tiny vector × matrix).
+Decode is a chef who spends more time walking to the fridge than cooking.
+So decode speed ≈ bytes moved ÷ bandwidth — and a smaller KV cache helps directly.
+
+## 14. Kernel-launch overhead
+Every GPU operation (a matmul, an add, a softmax) is a **kernel** that the CPU must
+*launch*. Each launch costs a few microseconds no matter how small the job. GPT-2 does
+hundreds of small kernels per token, so for short sequences the GPU is mostly
+**waiting for the CPU to hand it work** — like a courier making 300 trips with one
+envelope each. That's why the KV cache's speed-up looks small at 50 tokens and large
+at 500: at short lengths both versions are paying the same fixed launch cost.
+
+## 15. Weight memory vs KV memory
+**Weights** = the model itself; fixed: parameters × bytes (0.5 B params × 2 bytes ≈ 1 GB
+in FP16). **KV cache** = grows with tokens × batch. For long prompts or many users the
+KV cache can become bigger than the weights. For **MoE** models (like Param2) all
+experts must sit in memory even though only a few are *used* per token, so weight
+memory follows *total* parameters while compute follows *active* parameters.
+
+---
+
+# Interview questions per experiment
+
+_(added after each experiment runs, using the real numbers)_
