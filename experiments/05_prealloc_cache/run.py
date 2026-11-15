@@ -15,7 +15,6 @@ sys.path.insert(0, str(ROOT))
 import pandas as pd  # noqa: E402
 import torch  # noqa: E402
 
-from src.bench import bench_generation  # noqa: E402
 from src.common import PLOTS, RESULTS, get_device, run_metadata, set_seed  # noqa: E402
 
 spec = importlib.util.spec_from_file_location("exp04", ROOT / "experiments/04_speed_memory/run.py")
@@ -43,16 +42,40 @@ def main():
     if not same:
         sys.exit("Outputs differ - fix correctness before measuring speed.")
 
+    from src.bench import gpu_warmup, peak_memory, time_interleaved
+    from src.kv_cache import kv_bytes_formula
+    gpu_warmup(dev)
     rows = []
+    c = model.cfg
     for n in LENGTHS:
+        caches = {}
+
+        def make_run(method):
+            def run():
+                cache = make_cache(method, model, max_len=ids.shape[1] + n)
+                out = generate_cached(model, ids, n, cache)
+                caches[method] = cache
+                return out, cache
+            return run
+
+        runs = {m: make_run(m) for m in ["concat", "prealloc"]}
+        timing = time_interleaved(runs, dev, warmup=2, repeats=7)
         for method in ["concat", "prealloc"]:
-            r = bench_generation(model, ids, method, n, dev)
-            r.update(run_metadata("gpt2 (124M, from scratch)", "fp32", 1, ids.shape[1] + n, dev.type))
-            r["tokens_identical_to_concat"] = same
+            caches.clear()
+            mem = peak_memory(runs[method], dev)
+            cache = caches[method]
+            t = timing[method]
+            r = {"method": method, "new_tokens": n, "prompt_tokens": ids.shape[1], **t, **mem,
+                 "ms_per_token": 1000 * t["median_s"] / n, "tokens_per_s": n / t["median_s"],
+                 "kv_tokens_stored": cache.seq_len, "kv_used_bytes": cache.used_nbytes(),
+                 "kv_reserved_bytes": cache.nbytes(),
+                 "kv_formula_bytes": kv_bytes_formula(c.n_layer, c.n_head, c.head_dim, cache.seq_len, 1, 4),
+                 "tokens_identical_to_concat": same,
+                 **run_metadata("gpt2 (124M, from scratch)", "fp32", 1, ids.shape[1] + n, dev.type)}
             rows.append(r)
-            print(f"{method:9s} n={n:4d}  median {r['median_s'] * 1000:8.1f} ms  "
-                  f"{r['ms_per_token']:.3f} ms/token  peak+{r['peak_over_baseline_B'] / 2**20:.2f} MiB  "
-                  f"kv reserved {r['kv_reserved_bytes'] / 2**20:.2f} MiB")
+            print(f"{method:9s} n={n:4d}  median {r['median_s'] * 1000:8.1f} ms (min {r['min_s'] * 1000:.1f}, "
+                  f"max {r['max_s'] * 1000:.1f})  {r['ms_per_token']:.3f} ms/token  "
+                  f"peak+{r['peak_over_baseline_B'] / 2**20:.2f} MiB  kv reserved {r['kv_reserved_bytes'] / 2**20:.2f} MiB")
     pd.DataFrame(rows).to_csv(OUT, index=False)
     print(f"saved {OUT}")
     exp04.plot(OUT, PLOTS / "05_prealloc_vs_concat.png", title="Preallocated vs torch.cat KV cache")
