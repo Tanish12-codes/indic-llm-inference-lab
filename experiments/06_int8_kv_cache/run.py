@@ -113,7 +113,7 @@ def plot():
         txt = f"{v:.0f}%" + ("" if pd.isna(f) else f" (diverges at {int(f)})")
         axes[2].annotate(txt, (v, b.get_y() + b.get_height() / 2), xytext=(3, 0), textcoords="offset points",
                          va="center", fontsize=8, color=plotstyle.TEXT2)
-    axes[2].set(title=f"Same tokens as FP32 cache? ({int(a.new_tokens.iloc[0])} new)",
+    axes[2].set(title=f"Same tokens as FP32? ({int(a.new_tokens.iloc[0])} generated)",
                 xlabel="% identical (position-wise)", xlim=(0, 125))
     axes[2].grid(axis="x", visible=True)
     axes[2].grid(axis="y", visible=False)
