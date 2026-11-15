@@ -59,12 +59,16 @@ character's 3 bytes. Param2 keeps whole words such as "यूनिवर्स�
 - **Surprise 1 — Param2 is *worse* at English** (33.7 vs 27.1 tokens/sentence, 1.55 tokens/word).
   Vocabulary is a fixed budget: slots given to Devanagari words are slots not given to English words.
   Every tokenizer trades one language against another.
-- **Surprise 2 — Qwen2.5 Hindi round-trip fails 13.5 %.** Byte-level BPE can represent any text,
-  so the bytes themselves are not lost. Leading hypothesis: Qwen's tokenizer **normalises Unicode
-  (NFC)** before splitting, and some FLORES Hindi sentences store a character in a different but
-  visually identical Unicode form (e.g. nukta letters like क़ written precomposed vs as क + ़).
-  Decoding returns the normalised form, which looks the same but isn't byte-identical.
-  *Status: hypothesis — verify with `check_roundtrip.py`.*
+- **Surprise 2 — Qwen2.5 Hindi round-trip fails 13.5 % (27/200). CONFIRMED cause: Unicode NFC.**
+  `check_roundtrip.py` shows Qwen's tokenizer has an `NFC()` normaliser, and **27 of 27** failures
+  equal `NFC(original)` exactly (0 need NFKC, 0 unexplained). The culprits are the *precomposed nukta
+  letters* U+0958–U+095F (क़ ख़ ग़ ज़ ड़ ढ़ फ़ य़). Unicode marks them "composition-excluded", so NFC
+  **splits** each one into base letter + nukta sign (e.g. U+095E फ़ → U+092B फ + U+093C ़). The text
+  looks identical on screen but is 1 code point longer per such letter (id 31: 118 → 119 characters).
+  No information is lost for a reader, but byte-exact equality — and string-matching code — breaks.
+  GPT-2 and Param2 don't normalise, so they round-trip 100 %.
+  Interview angle: "decode(encode(x)) == x" is a property of the *whole pipeline*, including normalisation —
+  not guaranteed just because the BPE is byte-level.
 - **Fairest metric = tokens for the same meaning** (the "× English" column), not tokens/word, because
   "word" means different amounts of meaning in different languages.
 

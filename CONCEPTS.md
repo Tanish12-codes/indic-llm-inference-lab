@@ -143,7 +143,8 @@ For cost comparisons I use tokens for the same meaning, using parallel sentences
 "Yes — vocabulary is a fixed budget. Param2 cut Hindi tokens by 5× compared with Qwen2.5, but its
 English got about 20 % more expensive than GPT-2's: 33.7 versus 27.1 tokens per sentence. Also, a
 bigger vocabulary makes the embedding and output layers bigger. And decode(encode(text)) isn't
-always identical: Qwen2.5 failed to round-trip 13.5 % of Hindi sentences, most likely due to
-Unicode normalisation — the text looks the same, but the bytes differ."
+always identical: Qwen2.5 failed to round-trip 13.5 % of Hindi sentences. I traced all 27 failures to
+its NFC Unicode normaliser: letters like फ़ stored as one code point get split into फ plus a nukta
+sign. It looks identical on screen, but the bytes differ, so exact string matching breaks."
 
 _(more experiments are added as they run)_
