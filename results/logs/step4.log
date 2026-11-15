@@ -1,0 +1,15 @@
+$ .\.venv\Scripts\python.exe experiments\04_speed_memory\run.py
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  24%|██▍       | 36/148 [00:00<00:00, 350.98it/s]Loading weights:  49%|████▊     | 72/148 [00:00<00:00, 238.26it/s]Loading weights:  66%|██████▌   | 98/148 [00:00<00:00, 182.44it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 304.12it/s]
+device=cuda  prompt tokens=15  weights=474.7 MiB
+uncached  n=  50  median    434.4 ms (min 412.4, max 489.1)  8.69 ms/token  peak+33.3 MiB
+concat    n=  50  median    452.7 ms (min 444.7, max 507.5)  9.05 ms/token  peak+13.7 MiB kv used=4.50 MiB formula=4.50 MiB
+uncached  n= 100  median    966.7 ms (min 946.9, max 1040.5)  9.67 ms/token  peak+53.1 MiB
+concat    n= 100  median    962.6 ms (min 907.9, max 971.4)  9.63 ms/token  peak+17.2 MiB kv used=8.02 MiB formula=8.02 MiB
+uncached  n= 200  median   2770.0 ms (min 2755.2, max 2818.8)  13.85 ms/token  peak+92.2 MiB
+concat    n= 200  median   1853.5 ms (min 1739.6, max 1930.3)  9.27 ms/token  peak+24.3 MiB kv used=15.05 MiB formula=15.05 MiB
+uncached  n= 500  median  14888.0 ms (min 14450.5, max 15388.3)  29.78 ms/token  peak+207.3 MiB
+concat    n= 500  median   6190.6 ms (min 6078.3, max 6765.1)  12.38 ms/token  peak+53.5 MiB kv used=36.14 MiB formula=36.14 MiB
+saved C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\results\04_speed_memory.csv
+saved C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\plots\04_speed_memory.png
+
+[exit code 0]

@@ -93,3 +93,38 @@ def bench_generation(model, ids, method: str, n_new: int, device, warmup=2, repe
         })
     holder.clear()
     return row
+
+
+def time_interleaved(fns: dict, device, warmup: int = 2, repeats: int = 7) -> dict:
+    """Time several functions in ROUND-ROBIN order: A B C, A B C, ... (rotating who goes first).
+
+    Why: a laptop GPU changes its clock speed with temperature and power state. If we time all of A
+    and then all of B, a slow-down that happens during B looks like "B is slower". Interleaving
+    spreads any drift evenly over every method, so the *comparison* stays fair.
+    """
+    names = list(fns)
+    for _ in range(warmup):
+        for n in names:
+            fns[n]()
+    times = {n: [] for n in names}
+    for rep in range(repeats):
+        order = names[rep % len(names):] + names[:rep % len(names)]   # rotate starting method
+        for n in order:
+            _sync(device)
+            t0 = time.perf_counter()
+            fns[n]()
+            _sync(device)
+            times[n].append(time.perf_counter() - t0)
+    return {n: {"median_s": statistics.median(t), "min_s": min(t), "max_s": max(t),
+                "repeats": repeats, "warmup": warmup, "interleaved": True} for n, t in times.items()}
+
+
+def gpu_warmup(device, seconds: float = 3.0):
+    """Keep the GPU busy for a few seconds so a laptop GPU ramps up to its working clock first."""
+    if torch.device(device).type != "cuda":
+        return
+    x = torch.randn(2048, 2048, device=device)
+    t0 = time.perf_counter()
+    while time.perf_counter() - t0 < seconds:
+        x = (x @ x).tanh_()
+    torch.cuda.synchronize()
