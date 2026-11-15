@@ -1,0 +1,59 @@
+$ .\.venv\Scripts\python.exe experiments\06_int8_kv_cache\run.py
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  11%|█         | 16/148 [00:00<00:00, 132.81it/s]Loading weights:  30%|███       | 45/148 [00:00<00:00, 214.56it/s]Loading weights:  46%|████▌     | 68/148 [00:00<00:00, 183.09it/s]Loading weights:  59%|█████▉    | 88/148 [00:00<00:00, 134.81it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 248.61it/s]
+ 100.0% identical, first divergence at None  | The history of the Indian subcontinent begins with
+ 100.0% identical, first divergence at None  | In a small village near the river, an old teacher
+ 100.0% identical, first divergence at None  | The recipe for a good cup of tea requires
+ 100.0% identical, first divergence at None  | Scientists announced on Tuesday that the new teles
+ 100.0% identical, first divergence at None  | मुंबई भारत का सबसे बड़ा शहर है और
+prealloc  n= 100  kv used    8.02 MiB  16.326 ms/token  peak+19.6 MiB
+int8      n= 100  kv used    2.07 MiB  23.941 ms/token  peak+14.5 MiB
+prealloc  n= 200  kv used   15.05 MiB  14.829 ms/token  peak+26.9 MiB
+int8      n= 200  kv used    3.88 MiB  28.619 ms/token  peak+15.3 MiB
+prealloc  n= 500  kv used   36.14 MiB  13.887 ms/token  peak+47.4 MiB
+int8      n= 500  kv used    9.32 MiB  35.234 ms/token  peak+21.9 MiB
+prealloc  n= 900  kv used   64.27 MiB  19.566 ms/token  peak+75.5 MiB
+int8      n= 900  kv used   16.57 MiB  39.535 ms/token  peak+30.8 MiB
+   new_tokens  kv_used_bytes  saving_vs_fp32_pct  saving_vs_fp16_pct
+1         100        2166912            74.21875             48.4375
+3         200        4067712            74.21875             48.4375
+5         500        9770112            74.21875             48.4375
+7         900       17373312            74.21875             48.4375
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2350 (\N{DEVANAGARI LETTER MA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2348 (\N{DEVANAGARI LETTER BA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2312 (\N{DEVANAGARI LETTER II}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2349 (\N{DEVANAGARI LETTER BHA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2352 (\N{DEVANAGARI LETTER RA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2340 (\N{DEVANAGARI LETTER TA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2325 (\N{DEVANAGARI LETTER KA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2360 (\N{DEVANAGARI LETTER SA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:128: UserWarning: Glyph 2337 (\N{DEVANAGARI LETTER DDA}) missing from font(s) DejaVu Sans.
+  fig.tight_layout()
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2350 (\N{DEVANAGARI LETTER MA}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2348 (\N{DEVANAGARI LETTER BA}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2312 (\N{DEVANAGARI LETTER II}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2349 (\N{DEVANAGARI LETTER BHA}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2352 (\N{DEVANAGARI LETTER RA}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2340 (\N{DEVANAGARI LETTER TA}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2325 (\N{DEVANAGARI LETTER KA}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2360 (\N{DEVANAGARI LETTER SA}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\experiments\06_int8_kv_cache\run.py:129: UserWarning: Glyph 2337 (\N{DEVANAGARI LETTER DDA}) missing from font(s) DejaVu Sans.
+  fig.savefig(PLOTS / "06_int8_kv_cache.png", dpi=150)
+saved plots/06_int8_kv_cache.png
+
+[exit code 0]

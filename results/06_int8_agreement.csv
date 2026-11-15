@@ -1,0 +1,6 @@
+prompt,prompt_tokens,new_tokens,identical_positionwise_pct,identical_prefix_tokens,first_divergence_index,layer0_kv_relative_quant_error,gpu,device,torch_version,model,precision,batch,seq_len,date,os
+The history of the Indian subcontinent begins with the first humans who arrived,15,200,100.0,200,,0.005950257647782564,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,"gpt2 (124M, from scratch)","fp32 compute, int8 KV",1,215,2026-11-15 16:46,Windows 11
+"In a small village near the river, an old teacher",11,200,100.0,200,,0.005944941658526659,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,"gpt2 (124M, from scratch)","fp32 compute, int8 KV",1,211,2026-11-15 16:46,Windows 11
+The recipe for a good cup of tea requires,9,200,100.0,200,,0.005962340626865625,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,"gpt2 (124M, from scratch)","fp32 compute, int8 KV",1,209,2026-11-15 16:46,Windows 11
+Scientists announced on Tuesday that the new telescope had,9,200,100.0,200,,0.005885610356926918,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,"gpt2 (124M, from scratch)","fp32 compute, int8 KV",1,209,2026-11-15 16:47,Windows 11
+मुंबई भारत का सबसे बड़ा शहर है और,49,200,100.0,200,,0.0056508067063987255,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,"gpt2 (124M, from scratch)","fp32 compute, int8 KV",1,249,2026-11-15 16:47,Windows 11
