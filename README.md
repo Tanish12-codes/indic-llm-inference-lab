@@ -1,6 +1,6 @@
 # Indic LLM Inference Lab
 
-**Question:** What does it cost — in memory and time — to run (infer) an LLM, and why does it cost
+**Question:** What does it cost  in memory and time  to run (infer) an LLM, and why does it cost
 more for Indian languages?
 
 **Short answer (confirmed by the numbers below):** cost is paid *per token*. The same sentence in
