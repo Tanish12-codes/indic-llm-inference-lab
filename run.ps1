@@ -9,6 +9,7 @@ param([Parameter(Mandatory = $true)][string]$step)
 
 $env:PYTHONUTF8 = "1"
 $env:PYTHONIOENCODING = "utf-8"
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8   # show Devanagari correctly
 $py = ".\.venv\Scripts\python.exe"
 if (-not (Test-Path $py)) { Write-Error "No .venv found - run .\setup_env.ps1 first"; exit 1 }
 

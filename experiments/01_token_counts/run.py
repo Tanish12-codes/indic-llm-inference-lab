@@ -36,6 +36,29 @@ TOKENIZERS = {
 DATASET = "openlanguagedata/flores_plus"
 
 
+def _gated_exit(e):
+    sys.exit(
+        "\nFLORES+ is gated. Please:\n"
+        "  1) open https://huggingface.co/datasets/openlanguagedata/flores_plus and accept the terms\n"
+        "  2) run  .venv\\Scripts\\hf auth login   (paste a READ token)\n"
+        f"Original error: {str(e)[:300]}"
+    )
+
+
+def _is_auth_error(e) -> bool:
+    m = str(e).lower()
+    return any(x in m for x in ("gated", "401", "403", "authenticat", "unauthorized"))
+
+
+def _one_language(df: pd.DataFrame, lang: str) -> pd.DataFrame:
+    """Keep one row per sentence id. Some languages have several spelling 'variants';
+    we keep the default one (empty variant) when there is a choice."""
+    if "variant" in df.columns:
+        df = df.assign(_v=df["variant"].fillna("").astype(str).ne("")).sort_values(["id", "_v"])
+    df = df.drop_duplicates("id", keep="first")
+    return df[["id", "text"]].rename(columns={"text": lang})
+
+
 def load_flores(n: int, split: str = "dev") -> pd.DataFrame:
     """Return a DataFrame with columns id, English, Hindi, Marathi (aligned by FLORES id)."""
     from datasets import load_dataset
@@ -43,19 +66,30 @@ def load_flores(n: int, split: str = "dev") -> pd.DataFrame:
     frames = {}
     for lang, code in LANGS.items():
         try:
-            ds = load_dataset(DATASET, code, split=split)
+            df = load_dataset(DATASET, code, split=split).to_pandas()
         except Exception as e:  # noqa: BLE001
-            msg = str(e)
-            if "gated" in msg.lower() or "401" in msg or "403" in msg or "authenticat" in msg.lower():
-                sys.exit(
-                    "\nFLORES+ is gated. Please:\n"
-                    "  1) open https://huggingface.co/datasets/openlanguagedata/flores_plus and accept the terms\n"
-                    "  2) run  .venv\\Scripts\\hf auth login   (paste a READ token)\n"
-                    f"Original error: {msg[:300]}"
-                )
+            if _is_auth_error(e):
+                _gated_exit(e)
+            frames = None          # per-language subset not available -> use the 'default' subset
+            break
+        frames[lang] = _one_language(df, lang)
+
+    if frames is None:
+        print("Per-language subsets not found; loading the 'default' subset and filtering by language code.")
+        try:
+            full = load_dataset(DATASET, "default", split=split).to_pandas()
+        except Exception as e:  # noqa: BLE001
+            if _is_auth_error(e):
+                _gated_exit(e)
             raise
-        df = ds.to_pandas()
-        frames[lang] = df[["id", "text"]].rename(columns={"text": lang})
+        frames = {}
+        for lang, code in LANGS.items():
+            iso3, script = code.split("_")
+            sub = full[(full["iso_639_3"] == iso3) & (full["iso_15924"] == script)]
+            if sub.empty:
+                sys.exit(f"No rows for {code} in FLORES+ {split}")
+            frames[lang] = _one_language(sub, lang)
+
     out = frames["English"]
     for lang in ["Hindi", "Marathi"]:
         out = out.merge(frames[lang], on="id", how="inner")

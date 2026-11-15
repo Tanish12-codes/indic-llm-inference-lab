@@ -124,4 +124,26 @@ memory follows *total* parameters while compute follows *active* parameters.
 
 # Interview questions per experiment
 
-_(added after each experiment runs, using the real numbers)_
+## Experiment 01 — token counts
+
+**Q1. Why does the same sentence cost more tokens in Hindi than in English?**
+"Tokenizers learn their pieces from training text. GPT-2 saw mostly English, so it has whole-word
+tokens for English but almost nothing for Devanagari. Each Hindi letter is 3 bytes in UTF-8 and GPT-2
+often spends one token per byte or two. In my test, the same 200 sentences cost 7.3× more tokens in
+Hindi than in English with GPT-2, 4.3× with Qwen2.5, and only 1.15× with Param2, which was built for
+Indian languages."
+
+**Q2. What is fertility, and what's wrong with it as a metric?**
+"Fertility is tokens per word — how many pieces a word breaks into. The problem is that a 'word'
+isn't the same unit in every language: Marathi glues suffixes onto words, so it has fewer, longer
+words. Per word, Marathi looked much worse than Hindi; per sentence they cost almost the same.
+For cost comparisons I use tokens for the same meaning, using parallel sentences like FLORES+."
+
+**Q3. Can a better tokenizer for Indian languages hurt anything?**
+"Yes — vocabulary is a fixed budget. Param2 cut Hindi tokens by 5× compared with Qwen2.5, but its
+English got about 20 % more expensive than GPT-2's: 33.7 versus 27.1 tokens per sentence. Also, a
+bigger vocabulary makes the embedding and output layers bigger. And decode(encode(text)) isn't
+always identical: Qwen2.5 failed to round-trip 13.5 % of Hindi sentences, most likely due to
+Unicode normalisation — the text looks the same, but the bytes differ."
+
+_(more experiments are added as they run)_

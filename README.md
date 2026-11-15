@@ -12,7 +12,9 @@ token costs a slice of KV-cache memory and one decode step. Two levers fix it: b
 > from `results/*.csv` as each step passes. See `CONCEPTS.md` for every idea explained simply.
 
 ## Hardware
-_(filled from `results/env_check.txt` after setup)_ — Windows PC, NVIDIA RTX 3050 (~6 GB VRAM).
+Windows 11 laptop · NVIDIA GeForce RTX 3050 6GB **Laptop** GPU (compute capability 8.6, 20 SMs,
+~5 GiB free after the desktop) · Python 3.14.2 · torch 2.15.0+cu132 · transformers 5.23.0.
+(`results/env_check.txt`)
 
 ## How to reproduce (Windows PowerShell, from this folder)
 ```powershell
@@ -35,7 +37,21 @@ plots/        *.png (made from the CSVs only)
 ```
 
 ## Results
-_(added step by step)_
+
+### 1. Same meaning, different token cost
+![tokens](plots/01_fertility_chars_per_token.png)
+
+Tokens needed for the same 200 FLORES+ sentences, relative to English with the same tokenizer:
+
+| Tokenizer | Hindi | Marathi |
+|---|---|---|
+| GPT-2 | 7.25× | 7.72× |
+| Qwen2.5 | 4.27× | 4.48× |
+| Param2 | 1.15× | 1.13× |
+
+A tokenizer that never learned Devanagari spends **less than one character per token** (GPT-2: 0.66).
+Param2 makes Hindi almost as cheap as English, but its English costs ~20 % more tokens than GPT-2's
+(vocabulary is a fixed budget). Details: `experiments/01_token_counts/NOTES.md`.
 
 ## Limitations
 _(written at the end, honestly)_

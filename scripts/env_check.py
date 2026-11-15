@@ -54,7 +54,7 @@ try:
     else:
         say("!! No CUDA GPU visible to torch. Most likely the CPU-only torch wheel was installed.")
         say("   Fix: .venv\\Scripts\\pip uninstall -y torch ; "
-            ".venv\\Scripts\\pip install torch --index-url https://download.pytorch.org/whl/cu124")
+            ".venv\\Scripts\\pip install torch --index-url https://download.pytorch.org/whl/cu132")
 except ImportError:
     pass
 

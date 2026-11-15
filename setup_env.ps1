@@ -13,9 +13,9 @@ if (-not (Test-Path ".venv")) {
 $py = ".\.venv\Scripts\python.exe"
 & $py -m pip install --upgrade pip
 
-# PyTorch with CUDA 12.4 wheels. The RTX 3050 works with any recent NVIDIA driver (>= 550).
-# If this index fails, try cu121 or cu126 instead.
-& $py -m pip install torch --index-url https://download.pytorch.org/whl/cu124
+# PyTorch with CUDA 13.2 wheels (default CUDA build for torch 2.15; supports Python 3.14).
+# Needs a recent NVIDIA driver (check: nvidia-smi shows "CUDA Version: 13.2" or higher). Alternative: cu134.
+& $py -m pip install torch --index-url https://download.pytorch.org/whl/cu132
 
 & $py -m pip install -r requirements.txt
 

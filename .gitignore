@@ -5,3 +5,7 @@ __pycache__/
 .ipynb_checkpoints/
 *.safetensors
 *.bin
+
+# These contain FLORES+ sentence text - the licence asks us not to re-host it publicly
+results/01_hindi_split.txt
+results/logs/step1.log

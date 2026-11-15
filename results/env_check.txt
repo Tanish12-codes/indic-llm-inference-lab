@@ -1,0 +1,25 @@
+=== Indic LLM Inference Lab: environment check ===
+OS:      Windows 11 (10.0.26300)
+Python:  3.14.2  (C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\.venv\Scripts\python.exe)
+venv:    yes
+Disk:    149.9 GB free of 510.7 GB (drive holding the project)
+
+  [ok] torch            2.15.0+cu132
+  [ok] transformers     5.23.0
+  [ok] tokenizers       0.23.3
+  [ok] datasets         5.2.0
+  [ok] huggingface_hub  2.4.0
+  [ok] safetensors      0.8.0
+  [ok] sentencepiece    0.2.3
+  [ok] pandas           3.1.1
+  [ok] matplotlib       3.11.2
+  [ok] pytest           9.2.0
+
+torch.cuda.is_available(): True
+torch built with CUDA:     13.2
+GPU:     NVIDIA GeForce RTX 3050 6GB Laptop GPU, 6.00 GiB VRAM, compute capability 8.6, 20 SMs
+VRAM free right now: 5.04 GiB
+Tiny GPU matmul test: ok (3615.9)
+Hugging Face login: NO  -> run:  .venv\Scripts\hf auth login   (or huggingface-cli login)
+
+Missing packages: none
