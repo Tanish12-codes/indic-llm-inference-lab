@@ -1,0 +1,1874 @@
+$ .\.venv\Scripts\python.exe experiments\09_combine_language_kv\run.py
+language tokenizer  mean_tokens_per_sentence  tokens_vs_english  kv_per_sentence_own_model_KiB  kv_doc_own_model_MiB  kv_doc_fixed_model_MiB
+ English     GPT-2                     27.07               1.00                         974.52                951.68                  317.23
+   Hindi     GPT-2                    196.28               7.25                        7066.08               6900.47                 2300.16
+ Marathi     GPT-2                    209.08               7.72                        7526.88               7350.47                 2450.16
+ English   Qwen2.5                     28.13               1.00                         337.56                329.65                  329.65
+   Hindi   Qwen2.5                    120.02               4.27                        1440.24               1406.48                 1406.48
+ Marathi   Qwen2.5                    125.99               4.48                        1511.88               1476.45                 1476.45
+ English    Param2                     33.71               1.00                        1415.82               1382.64                  395.04
+   Hindi    Param2                     38.60               1.15                        1621.20               1583.20                  452.34
+ Marathi    Param2                     37.98               1.13                        1594.95               1557.57                  445.02
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+findfont: Font family 'Noto Sans Devanagari' not found.
+findfont: Font family 'Lohit Devanagari' not found.
+findfont: Font family 'Mangal' not found.
+saved plots/09_language_kv_cost.png
+
+[exit code 0]
