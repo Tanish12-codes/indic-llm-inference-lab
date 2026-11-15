@@ -182,4 +182,42 @@ very first decode step and collapsed into repeated commas — only 4 percent of 
 hundred tokens; the cached logits equal a full re-run at each step; and a deliberately broken version must
 fail the test — otherwise the test can't catch the bug."
 
+## Experiment 04 — speed and memory, cached vs uncached
+
+**Q1. How much did the KV cache speed up generation, and why does the speed-up depend on length?**
+"On GPT-2 small on my laptop GPU: no gain at 50 new tokens, 1.5 times at 200, 2.4 times at 500.
+Without a cache, each step reprocesses the whole sequence, so the cost per token grows — from 8.7 to
+30 milliseconds per token. With a cache it stays around 9 to 12. At short lengths both are dominated
+by the same fixed overhead per step, so the cache can't show its advantage yet."
+
+**Q2. What is kernel-launch overhead, and how did you see it?**
+"Every GPU operation is a kernel the CPU has to launch, and each launch costs microseconds regardless of
+size. GPT-2 launches a few hundred small kernels per token. At 50 tokens, uncached and cached both cost
+about 9 milliseconds per token even though uncached does far more maths — so the time was launch and
+Python overhead, not computation. Engines fix this with fused kernels, torch.compile or CUDA graphs."
+
+**Q3. How do you calculate KV-cache memory, and did it match?**
+"2 for K and V, times layers, times KV heads, times head dimension, times tokens, times batch, times
+bytes per number. For GPT-2 in FP32 that's 72 KiB per token. My measured cache tensors matched the formula
+exactly at every length — 36.14 MiB at 514 tokens. One detail: the cache holds prompt plus n minus one tokens,
+because the last generated token is never fed back in."
+
+## Experiment 06 — int8 KV cache
+
+**Q1. How does int8 KV-cache quantization work?**
+"For each key or value vector, store one scale — the largest absolute value divided by 127 — and store
+the vector as integers from −127 to 127. Before attention, multiply back by the scale. With 64-number
+vectors and an FP16 scale, that's 66 bytes instead of 256 in FP32."
+
+**Q2. What did you gain and what did it cost?**
+"Memory: exactly 74 percent less than FP32 and 48 percent less than FP16. Quality: across 5 prompts and
+200 greedy tokens each, every token was identical to the FP32 cache, with about 0.6 percent reconstruction
+error. But my version was 1.5 to 2.5 times slower, because it dequantizes the whole cache with separate
+kernels every step."
+
+**Q3. Then why do real systems use quantized KV caches?**
+"Decode is memory-bound: each step must read the whole cache. If dequantization is fused into the attention
+kernel, you read 2 to 4 times fewer bytes, so you get both less memory and more speed, and you can fit
+longer contexts or more users. My experiment shows the memory half; the speed half needs a fused kernel."
+
 _(more experiments are added as they run)_
