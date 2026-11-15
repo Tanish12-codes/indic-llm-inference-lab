@@ -1,0 +1,41 @@
+$ .\.venv\Scripts\python.exe experiments\08_memory_calculator\run.py
+
+=== gpt2  (gpt2) ===
+layers=12 hidden=768 q_heads=12 kv_heads=12 head_dim=64 vocab=50,257 tied_embeddings=True
+notes: num_key_value_heads missing -> MHA (= query heads); head_dim missing -> hidden_size / num_attention_heads
+params (estimated from config): total 124.4 M, active/token 124.4 M
+params (hub safetensors metadata): 137.0 M
+weights: fp32 0.46 GiB, fp16/bf16 0.23 GiB, int8 0.12 GiB, int4 0.06 GiB
+KV cache per token: 36.0 KiB in fp16  (= 2 x 12 layers x 12 KV heads x 64 dims x 2 bytes)
+    1,000 tokens x batch 1 -> 0.034 GiB
+   32,000 tokens x batch 1 -> 1.099 GiB
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:   9%|▉         | 14/148 [00:00<00:00, 136.61it/s]Loading weights:  19%|█▉        | 28/148 [00:00<00:00, 123.69it/s]Loading weights:  28%|██▊       | 42/148 [00:00<00:01, 85.07it/s] Loading weights: 100%|██████████| 148/148 [00:00<00:00, 317.11it/s]
+   MEASURED (float32): params 124.4 M, weights 474.7 MiB (CUDA delta 475.5 MiB), KV/token 73728 B vs calculator 73728 B (CUDA delta 89088 B)
+
+=== Qwen/Qwen2.5-0.5B  (qwen2) ===
+layers=24 hidden=896 q_heads=14 kv_heads=2 head_dim=64 vocab=151,936 tied_embeddings=True
+notes: head_dim missing -> hidden_size / num_attention_heads
+params (estimated from config): total 494.0 M, active/token 494.0 M
+params (hub safetensors metadata): 494.0 M
+weights: fp32 1.84 GiB, fp16/bf16 0.92 GiB, int8 0.46 GiB, int4 0.23 GiB
+KV cache per token: 12.0 KiB in fp16  (= 2 x 24 layers x 2 KV heads x 64 dims x 2 bytes)
+    1,000 tokens x batch 1 -> 0.011 GiB
+   32,000 tokens x batch 1 -> 0.366 GiB
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  12%|█▏        | 35/290 [00:00<00:00, 268.09it/s]Loading weights:  24%|██▍       | 70/290 [00:00<00:00, 298.31it/s]Loading weights:  35%|███▍      | 101/290 [00:00<00:00, 298.18it/s]Loading weights:  45%|████▌     | 131/290 [00:00<00:00, 268.44it/s]Loading weights:  57%|█████▋    | 164/290 [00:00<00:00, 271.85it/s]Loading weights:  67%|██████▋   | 194/290 [00:00<00:00, 280.30it/s]Loading weights:  77%|███████▋  | 223/290 [00:00<00:00, 274.43it/s]Loading weights:  87%|████████▋ | 251/290 [00:00<00:00, 271.89it/s]Loading weights:  97%|█████████▋| 281/290 [00:01<00:00, 279.19it/s]Loading weights: 100%|██████████| 290/290 [00:01<00:00, 286.38it/s]
+   MEASURED (float16): params 494.0 M, weights 942.3 MiB (CUDA delta 950.2 MiB), KV/token 12288 B vs calculator 12288 B (CUDA delta 12288 B)
+Parse safetensors files:   0%|          | 0/4 [00:00<?, ?it/s]Parse safetensors files:  25%|██▌       | 1/4 [00:01<00:03,  1.16s/it]Parse safetensors files:  50%|█████     | 2/4 [00:01<00:01,  1.56it/s]Parse safetensors files:  75%|███████▌  | 3/4 [00:01<00:00,  1.73it/s]Parse safetensors files: 100%|██████████| 4/4 [00:02<00:00,  1.97it/s]
+
+=== bharatgenai/Param2-17B-A2.4B-Thinking  (param2moe) ===
+layers=21 hidden=2048 q_heads=32 kv_heads=8 head_dim=64 vocab=128,000 tied_embeddings=True
+notes: MoE: 64 experts, top-6, 20/21 MoE layers, shared-expert width 4096
+params (estimated from config): total 17,151.1 M, active/token 2,554.9 M
+params (hub safetensors metadata): 17,151.1 M
+weights: fp32 63.89 GiB, fp16/bf16 31.95 GiB, int8 15.97 GiB, int4 7.99 GiB
+KV cache per token: 42.0 KiB in fp16  (= 2 x 21 layers x 8 KV heads x 64 dims x 2 bytes)
+    1,000 tokens x batch 1 -> 0.040 GiB
+   32,000 tokens x batch 1 -> 1.282 GiB
+   (arithmetic from the published config only - weights never downloaded)
+
+saved C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\results\08_memory_calculator.csv
+
+[exit code 0]

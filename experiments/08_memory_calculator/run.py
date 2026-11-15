@@ -44,7 +44,7 @@ def measure(repo, dtype, dev):
     if dev.type == "cuda":
         torch.cuda.empty_cache()
         m0 = torch.cuda.memory_allocated()
-    model = AutoModelForCausalLM.from_pretrained(repo, torch_dtype=dtype).to(dev).eval()
+    model = AutoModelForCausalLM.from_pretrained(repo, dtype=dtype).to(dev).eval()
     w_bytes = sum(p.numel() * p.element_size() for p in model.parameters())
     n_params = sum(p.numel() for p in model.parameters())
     w_cuda = torch.cuda.memory_allocated() - m0 if dev.type == "cuda" else float("nan")

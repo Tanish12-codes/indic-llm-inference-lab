@@ -162,7 +162,11 @@ def report(src: str, check_hub: bool = True) -> dict:
     pub = published_param_count(src) if check_hub and not Path(src).exists() else None
     row = {**{k: v for k, v in asdict(s).items() if k != "notes"}, **pc,
            "params_published_safetensors": pub, "notes": "; ".join(s.notes)}
-    base = pub or pc["params_total_est"]
+    # Weight memory uses OUR parameter count. The hub's safetensors count can include stored
+    # non-learned buffers (old GPT-2 checkpoints store 12 causal masks of 1024x1024 = 12.6 M numbers).
+    base = pc["params_total_est"]
+    if pub:
+        row["published_minus_estimate"] = pub - pc["params_total_est"]
     for k, b in BYTES.items():
         row[f"weights_{k}_bytes"] = base * b
         row[f"kv_per_token_{k}_bytes"] = kv_bytes_per_token(s, b)
