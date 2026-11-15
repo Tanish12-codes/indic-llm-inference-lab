@@ -40,7 +40,17 @@ def apply():
         "lines.linewidth": 2,
         "lines.markersize": 6,
         "font.size": 10,
+        # Fallback chain: Latin glyphs from DejaVu, Devanagari from Nirmala UI (Windows) / Noto / Lohit.
+        "font.family": _available_fonts(),
     })
+
+
+def _available_fonts():
+    """DejaVu for Latin plus the first installed Devanagari font (only names that exist, so no warnings)."""
+    from matplotlib import font_manager
+    have = {f.name for f in font_manager.fontManager.ttflist}
+    wanted = ["Nirmala UI", "Noto Sans Devanagari", "Lohit Devanagari", "Mangal"]
+    return ["DejaVu Sans"] + [f for f in wanted if f in have][:1]
 
 
 def color_for(name: str, order: list[str]) -> str:

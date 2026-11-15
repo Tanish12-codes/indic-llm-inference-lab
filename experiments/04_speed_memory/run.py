@@ -78,6 +78,14 @@ def plot(csv=OUT, png=PLOTS / "04_speed_memory.png", title="Cached vs uncached")
         for n in u.index.intersection(c.index):
             axes[0].annotate(f"{u[n] / c[n]:.1f}x", (n, u[n]), xytext=(0, 6), textcoords="offset points",
                              ha="center", fontsize=8, color=plotstyle.TEXT2)
+    # A run interrupted by the OS (sleep / frozen console) can have an absurd max. Keep the axis readable
+    # and say so on the chart instead of hiding it.
+    cap = 1.3 * df.median_s.max()
+    axes[0].set_ylim(0, cap)
+    off = df[df.max_s > cap]
+    if len(off):
+        axes[0].annotate(f"{len(off)} run(s) with max off-scale\n(OS interruption; median unaffected)",
+                         (0.02, 0.80), xycoords="axes fraction", fontsize=8, color=plotstyle.TEXT2)
     axes[0].set(title="Total time (median; band = min-max)", xlabel="new tokens", ylabel="seconds")
     axes[1].set(title="Time per generated token", xlabel="new tokens", ylabel="ms / token")
     axes[2].set(title="Peak GPU memory above weights", xlabel="new tokens", ylabel="MiB above weights")

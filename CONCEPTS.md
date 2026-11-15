@@ -220,4 +220,70 @@ kernels every step."
 kernel, you read 2 to 4 times fewer bytes, so you get both less memory and more speed, and you can fit
 longer contexts or more users. My experiment shows the memory half; the speed half needs a fused kernel."
 
-_(more experiments are added as they run)_
+## Experiment 05 — preallocated cache
+
+**Q1. Why preallocate a KV cache instead of using torch.cat?**
+"torch.cat creates a new, bigger tensor every step and copies the whole cache into it. Preallocating reserves
+the full buffer once and writes each new token in place, so memory is predictable and nothing gets copied or
+fragmented."
+
+**Q2. How much faster was it for you?**
+"Not measurably. With interleaved timing, the differences were between minus 1 and plus 5 percent — within
+noise. The copy it saves is under a millisecond per step, while each GPT-2 step costs about 10 milliseconds
+of mostly fixed overhead. I reported that honestly instead of claiming a speed-up."
+
+**Q3. How do you benchmark reliably on a laptop GPU?**
+"Warm up first, synchronize before stopping the clock, repeat and report the median with min and max, and
+interleave the methods so clock drift hits all of them equally. In my first run, timing one method after the
+other made the same setting look 34 percent different between runs, and one run was even interrupted by the OS."
+
+## Experiment 07 — MHA vs GQA vs MQA
+
+**Q1. What's the difference between MHA, GQA and MQA?**
+"They differ in how many key/value heads the query heads share. MHA gives every query head its own K and V,
+MQA has all query heads share one, GQA is in between — say 12 query heads sharing 4 KV heads. KV-cache memory
+scales with the number of KV heads: I measured 36, 12 and 3 KiB per token."
+
+**Q2. Does GQA make decoding faster?**
+"At long context, yes, because decode is memory-bound — each step reads the whole cache. At 8,192 tokens and
+batch 8: MHA 17 milliseconds per step, GQA 9.7, MQA 7.7. Below about 1,000 tokens they were all about 7.5
+milliseconds, because fixed launch overhead dominates."
+
+**Q3. What's the trap when implementing GQA?**
+"Copying K and V back up to the full number of heads with repeat_interleave. That moves even more bytes than
+MHA — mine was 2.8 times slower than MHA at 8,192 tokens. The right way is to reshape so a group's query heads
+share one K and V without copying."
+
+## Experiment 08 — memory calculator
+
+**Q1. How do you estimate whether a model fits on a GPU?**
+"Weights are parameters times bytes per parameter: Qwen2.5-0.5B is 494 million parameters, so about 0.92 GiB
+in FP16 — I measured 942 MiB. Then add the KV cache: 2 times layers times KV heads times head dimension times
+bytes, per token, times tokens and batch — 12 KiB per token for Qwen. Plus some headroom for activations."
+
+**Q2. Why does a 17-billion-parameter MoE model with 2.4 billion active parameters still need so much memory?**
+"Because all experts must be in memory even though each token uses only a few. Param2 has 64 experts and uses
+6 per token, so it computes like a 2.5 B model but needs about 32 GiB in BF16 — even int4 is 8 GiB, more than
+my 6 GB card."
+
+**Q3. Your calculator disagreed with the Hub's parameter count for GPT-2. Why?**
+"The Hub's metadata said 137 million; the real model has 124.4 million. The extra 12.6 million are twelve
+1024-by-1024 causal-mask buffers stored in the old GPT-2 checkpoint — saved data, not learned weights. I fixed
+the calculator to use the actual parameter count."
+
+## Experiment 09 — language × tokenizer KV cost
+
+**Q1. Why does running an LLM cost more for Indian languages?**
+"Because cost is per token, and most tokenizers need far more tokens for Indian languages. For the same 1,000
+sentences, GPT-2's tokenizer makes Hindi need 6.9 GB of KV cache versus 0.95 GB for English — 7.25 times more.
+More tokens also means more decode steps, so it's slower too."
+
+**Q2. How can you reduce that cost?**
+"Two levers that multiply. Fewer tokens: an Indic-aware tokenizer like Param2's brings Hindi to 1.15 times
+English. Fewer bytes per token: grouped-query attention and a quantized KV cache. In my numbers, Qwen's GQA made
+Hindi KV smaller than Param2's despite 3 times more tokens."
+
+**Q3. What are the limits of your measurement?**
+"Speed and memory were measured on GPT-2 small, which can't understand Hindi — I only measured processing cost.
+The language comparison is arithmetic from token counts and published configs, on 200 sentences from one dataset.
+And it's one laptop GPU on Windows, where fixed overheads are large."
