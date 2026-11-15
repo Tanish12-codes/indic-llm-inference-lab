@@ -17,7 +17,6 @@ import pandas as pd  # noqa: E402
 import torch  # noqa: E402
 
 from src.attention import AttnStack  # noqa: E402
-from src.bench import time_fn  # noqa: E402
 from src.common import PLOTS, RESULTS, get_device, run_metadata, set_seed  # noqa: E402
 from src.kv_cache import kv_bytes_formula  # noqa: E402
 
@@ -37,53 +36,65 @@ def main():
     dev = get_device()
     dtype = torch.float16 if dev.type == "cuda" else torch.float32
     elem = torch.finfo(dtype).bits // 8
+    from src.bench import gpu_warmup, time_interleaved
+    gpu_warmup(dev)
     rows = []
     for ctx in [int(c) for c in args.contexts.split(",")]:
-        for name, kvh, naive in VARIANTS:
-            need = kv_bytes_formula(L, kvh, D_MODEL // H, ctx + args.steps, args.batch, elem)
-            if dev.type == "cuda":
-                free = torch.cuda.mem_get_info()[0]
-                extra = need * (H // kvh) if naive else 0          # naive copies of K/V (one layer at a time)
-                if need + extra / L + 3e8 > free:
-                    print(f"skip {name} ctx={ctx}: needs {need / 2**30:.2f} GiB, free {free / 2**30:.2f} GiB")
-                    continue
-            model = AttnStack(L, D_MODEL, H, kvh, naive).to(dev, dtype).eval()
-            if dev.type == "cuda":
-                torch.cuda.synchronize()
-                before = torch.cuda.memory_allocated()
-            kc, vc = model.alloc_cache(args.batch, ctx + args.steps, dtype, dev)
-            if dev.type == "cuda":
-                torch.cuda.synchronize()
-                cache_measured = torch.cuda.memory_allocated() - before
-            else:
-                cache_measured = (kc.numel() + vc.numel()) * kc.element_size()
+        # Fast variants are timed together, interleaved. The naive variant makes big temporary
+        # copies, so it is timed in its own group afterwards (to keep memory within ~5 GiB).
+        for group in ([v for v in VARIANTS if not v[2]], [v for v in VARIANTS if v[2]]):
+            built = {}
+            for name, kvh, naive in group:
+                need = kv_bytes_formula(L, kvh, D_MODEL // H, ctx + args.steps, args.batch, elem)
+                if dev.type == "cuda":
+                    free = torch.cuda.mem_get_info()[0]
+                    extra = 2 * need / L * (H // kvh) if naive else 0
+                    if need + extra + 4e8 > free:
+                        print(f"skip {name} ctx={ctx}: needs {need / 2**30:.2f} GiB, free {free / 2**30:.2f} GiB")
+                        continue
+                    torch.cuda.synchronize()
+                    before = torch.cuda.memory_allocated()
+                model = AttnStack(L, D_MODEL, H, kvh, naive).to(dev, dtype).eval()
+                kc, vc = model.alloc_cache(args.batch, ctx + args.steps, dtype, dev)
+                measured = (kc.numel() + vc.numel()) * kc.element_size()
+                if dev.type == "cuda":
+                    torch.cuda.synchronize()
+                    measured_cuda = torch.cuda.memory_allocated() - before \
+                        - sum(p.numel() * p.element_size() for p in model.parameters())
+                else:
+                    measured_cuda = measured
+                built[name] = (model, kc, vc, kvh, naive, measured, measured_cuda)
+            if not built:
+                continue
             x = torch.randn(args.batch, 1, D_MODEL, device=dev, dtype=dtype)
 
-            def run():
-                with torch.no_grad():
-                    y = x
-                    for s in range(args.steps):
-                        y = model(y, kc, vc, ctx + s)
-                return y
+            def make_run(model, kc, vc):
+                def run():
+                    with torch.no_grad():
+                        y = x
+                        for s_ in range(args.steps):
+                            y = model(y, kc, vc, ctx + s_)
+                    return y
+                return run
 
-            if dev.type == "cuda":
-                torch.cuda.reset_peak_memory_stats()
-            t = time_fn(run, dev, warmup=2, repeats=5)
-            peak = torch.cuda.max_memory_allocated() - before if dev.type == "cuda" else float("nan")
-            r = {"variant": name, "kv_heads": kvh, "q_heads": H, "naive_repeat": naive, "context": ctx,
-                 "kv_bytes_per_token_formula": kv_bytes_formula(L, kvh, D_MODEL // H, 1, 1, elem),
-                 "kv_bytes_per_token_measured": cache_measured / ((ctx + args.steps) * args.batch),
-                 "cache_bytes_measured": cache_measured,
-                 "peak_over_baseline_B": peak,
-                 "ms_per_decode_step": 1000 * t["median_s"] / args.steps,
-                 "ms_per_step_min": 1000 * t["min_s"] / args.steps,
-                 "ms_per_step_max": 1000 * t["max_s"] / args.steps,
-                 **run_metadata("random-weight attention stack (12L, 768d, 12 q-heads)",
-                                str(dtype).replace("torch.", ""), args.batch, ctx, dev.type)}
-            rows.append(r)
-            print(f"ctx={ctx:5d} {name:20s} KV/token={r['kv_bytes_per_token_measured']:8.0f} B  "
-                  f"cache={cache_measured / 2**20:8.1f} MiB  {r['ms_per_decode_step']:.3f} ms/step")
-            del model, kc, vc
+            timing = time_interleaved({n: make_run(*b[:3]) for n, b in built.items()}, dev, warmup=2, repeats=7)
+            for name, (model, kc, vc, kvh, naive, measured, measured_cuda) in built.items():
+                t = timing[name]
+                r = {"variant": name, "kv_heads": kvh, "q_heads": H, "naive_repeat": naive, "context": ctx,
+                     "kv_bytes_per_token_formula": kv_bytes_formula(L, kvh, D_MODEL // H, 1, 1, elem),
+                     "kv_bytes_per_token_measured": measured_cuda / ((ctx + args.steps) * args.batch),
+                     "cache_bytes_measured": measured_cuda, "cache_bytes_tensors": measured,
+                     "ms_per_decode_step": 1000 * t["median_s"] / args.steps,
+                     "ms_per_step_min": 1000 * t["min_s"] / args.steps,
+                     "ms_per_step_max": 1000 * t["max_s"] / args.steps, "interleaved": True,
+                     **run_metadata("random-weight attention stack (12L, 768d, 12 q-heads)",
+                                    str(dtype).replace("torch.", ""), args.batch, ctx, dev.type)}
+                rows.append(r)
+                print(f"ctx={ctx:5d} {name:20s} KV/token={r['kv_bytes_per_token_measured']:8.0f} B  "
+                      f"cache={measured_cuda / 2**20:8.1f} MiB  {r['ms_per_decode_step']:.3f} ms/step "
+                      f"(min {r['ms_per_step_min']:.2f}, max {r['ms_per_step_max']:.2f})")
+            del built
+            model = kc = vc = None          # drop loop variables too, so the cache memory is really freed
             if dev.type == "cuda":
                 torch.cuda.empty_cache()
     pd.DataFrame(rows).to_csv(OUT, index=False)
@@ -97,7 +108,9 @@ def plot():
     df = pd.read_csv(OUT)
     order = [v[0] for v in VARIANTS]
     fig, axes = plt.subplots(1, 2, figsize=(13, 4.4))
-    per_tok = df.drop_duplicates("variant").set_index("variant").reindex(order).dropna(subset=["kv_heads"])
+    # per-token cost from the largest context (allocator rounding is negligible there)
+    big = df[df.context == df.context.max()]
+    per_tok = big.drop_duplicates("variant").set_index("variant").reindex(order).dropna(subset=["kv_heads"])
     per_tok = per_tok[~per_tok.naive_repeat.astype(bool)]
     bars = axes[0].bar(per_tok.index, per_tok.kv_bytes_per_token_measured / 1024,
                        color=[plotstyle.color_for(v, order) for v in per_tok.index], edgecolor=plotstyle.SURFACE)
