@@ -1,134 +1,129 @@
 # Indic LLM Inference Lab
 
-**Question:** What does it cost  in memory and time  to run (infer) an LLM, and why does it cost
-more for Indian languages?
+How much memory and time does it take to run an LLM, and why is it more expensive for Indian languages?
 
-**Short answer (confirmed by the numbers below):** cost is paid *per token*. The same sentence in
-Hindi or Marathi becomes several times more tokens under English-centric tokenizers, and every
-token costs a slice of KV-cache memory and one decode step. Two levers fix it: better tokenizers
-(fewer tokens) and leaner attention/caches (fewer bytes per token: GQA/MQA, int8 KV).
+Most of the cost of inference is per token. Each token needs one decode step and its own slot in the KV cache. Tokenizers trained mostly on English split Hindi and Marathi text into far more tokens than English text with the same meaning, so the same request costs more. This repo measures that end to end. It covers the tokenizer gap, a GPT-2 written from scratch with a KV cache, a few cache optimizations, and a memory calculator that turns the token counts into megabytes.
 
-> Status: all 10 steps complete. Every number below comes from `results/*.csv`; every plot is drawn from
-> those CSVs. `CONCEPTS.md` explains every idea simply, with interview questions per experiment.
+## Summary
 
-## Key results at a glance
-| Question | Answer (measured) |
+| What | Result |
 |---|---|
-| Extra tokens for the same Hindi text vs English | GPT-2 **7.25×** · Qwen2.5 **4.27×** · Param2 **1.15×** |
-| KV memory for 1,000 Hindi sentences (FP16, GPT-2 shape) | **6.9 GB** vs 0.95 GB for English |
-| KV-cache speed-up, GPT-2 small, 50 → 500 new tokens | **1.0× → 2.4×** (short runs are launch-overhead bound) |
-| KV memory: formula vs measured | **exact** (72 KiB/token GPT-2 FP32; 12 KiB/token Qwen2.5 FP16) |
-| int8 KV cache | **−74 %** vs FP32 (−48 % vs FP16), 100 % identical tokens on 5 prompts, but slower unfused |
-| GQA / MQA at 8,192 tokens, batch 8 | KV/token **3× / 12× smaller**; decode **17.0 → 9.7 → 7.7 ms/step** |
-| Param2-17B (MoE) weights | **31.95 GiB** BF16 (all 64 experts held), ~2.55 B params active per token |
+| Tokens for the same Hindi text vs English | GPT-2 7.25x, Qwen2.5 4.27x, Param2 1.15x |
+| KV cache for 1,000 Hindi sentences (FP16, GPT-2 dimensions) | 6.9 GB, vs 0.95 GB for English |
+| KV cache speed-up, GPT-2 small, 50 to 500 new tokens | 1.0x to 2.4x |
+| KV cache size, measured vs formula | Identical (72 KiB/token GPT-2 FP32, 12 KiB/token Qwen2.5 FP16) |
+| int8 KV cache | 74% smaller than FP32 (48% vs FP16), same output on 5 test prompts, slower without a fused kernel |
+| MHA / GQA / MQA at 8,192 tokens, batch 8 | 36 / 12 / 3 KiB per token, 17.0 / 9.7 / 7.7 ms per decode step |
+| Param2-17B (MoE) weights | 31.95 GiB in BF16, about 2.55B parameters active per token |
 
-## Hardware
-Windows 11 laptop · NVIDIA GeForce RTX 3050 6GB **Laptop** GPU (compute capability 8.6, 20 SMs,
-~5 GiB free after the desktop) · Python 3.14.2 · torch 2.15.0+cu132 · transformers 5.23.0.
-(`results/env_check.txt`)
+## Setup
 
-## How to reproduce (Windows PowerShell, from this folder)
+- Windows 11 laptop, NVIDIA RTX 3050 6GB Laptop GPU (about 5 GiB usable)
+- Python 3.14.2, torch 2.15.0+cu132, transformers 5.23.0
+- Full environment report: `results/env_check.txt`
+
+## Running it
+
+From PowerShell in the repo folder:
+
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\setup_env.ps1    # venv + torch(CUDA) + libs + env check
-.\.venv\Scripts\hf auth login                                 # needed for gated FLORES+
-.\run.ps1 1        # step 1: token counts (no GPU needed)
-.\run.ps1 tests    # correctness gate: GPT-2 == HF, cached == uncached == HF generate
-.\run.ps1 all      # tests again, then steps 2..9 (stops if anything fails)
+powershell -ExecutionPolicy Bypass -File .\setup_env.ps1   # venv, CUDA torch, dependencies, env check
+.\.venv\Scripts\hf auth login                                # FLORES+ is gated on Hugging Face
+.\run.ps1 1        # token counts (CPU only)
+.\run.ps1 tests    # correctness tests
+.\run.ps1 all      # tests, then experiments 2-9; stops on the first failure
 ```
-Each run writes a UTF-8 log to `results/logs/`. Plots are always regenerated from CSVs
-(`run.py --plot-only`).
+
+Logs go to `results/logs/`. To redraw any plot from its CSV, run that experiment with `--plot-only`.
 
 ## Layout
+
 ```
-src/          gpt2_scratch.py  kv_cache.py  attention.py  memory_model.py  bench.py  common.py  plotstyle.py
-experiments/  NN_name/run.py + NOTES.md (prediction written before running, then result + why)
-tests/        test_gpt2_matches_hf.py  test_kv_cache_equivalence.py  test_attention_gqa.py
-results/      *.csv (every row carries GPU, torch version, model, precision, batch, seq len, date)
-plots/        *.png (made from the CSVs only)
+src/          gpt2_scratch.py, kv_cache.py, attention.py, memory_model.py, bench.py
+experiments/  NN_name/run.py and NOTES.md (prediction written before running, then result and explanation)
+tests/        test_gpt2_matches_hf.py, test_kv_cache_equivalence.py, test_attention_gqa.py
+results/      CSVs; every row records GPU, torch version, model, precision, batch, sequence length, date
+plots/        generated from the CSVs
 ```
 
 ## Results
 
-### 1. Same meaning, different token cost
-![tokens](plots/01_fertility_chars_per_token.png)
+### 1. Token counts
 
-Tokens needed for the same 200 FLORES+ sentences, relative to English with the same tokenizer:
+![token counts](plots/01_fertility_chars_per_token.png)
+
+200 parallel sentences from FLORES+ (`dev` split) in English, Hindi and Marathi. Token counts relative to English, same tokenizer:
 
 | Tokenizer | Hindi | Marathi |
 |---|---|---|
-| GPT-2 | 7.25× | 7.72× |
-| Qwen2.5 | 4.27× | 4.48× |
-| Param2 | 1.15× | 1.13× |
+| GPT-2 | 7.25x | 7.72x |
+| Qwen2.5 | 4.27x | 4.48x |
+| Param2 | 1.15x | 1.13x |
 
-A tokenizer that never learned Devanagari spends **less than one character per token** (GPT-2: 0.66).
-Param2 makes Hindi almost as cheap as English, but its English costs ~20 % more tokens than GPT-2's
-(vocabulary is a fixed budget). Details: `experiments/01_token_counts/NOTES.md`.
+GPT-2 averages 0.66 characters per token on Hindi. Every Devanagari character is 3 bytes in UTF-8, and GPT-2 learned very few merges for those bytes, so many tokens hold only part of a character. Param2 gets Hindi close to English, but its English costs about 20% more tokens than GPT-2's, because vocabulary slots spent on Devanagari aren't available for English.
 
-### 2–3. Correctness first
-- **From-scratch GPT-2 = Hugging Face**: max logit difference 4.6e-5 – 1.1e-4 (FP32), always smaller
-  than HF's own CPU-vs-GPU difference (1.2e-4 – 2.3e-4); identical next-token predictions.
-- **KV cache**: greedy uncached = cached (torch.cat) = cached (preallocated) = HF `generate` for
-  200 tokens (100 % identical). Giving new tokens position 0 (the classic bug) breaks the output at
-  the very first decode step (4 % identical, degenerates into ",,,,,").
+Qwen2.5 failed `decode(encode(text)) == text` on 27 of 200 Hindi sentences. All 27 come from its NFC normalizer, which splits precomposed nukta letters (U+0958 to U+095F) into a base letter plus U+093C. The text looks the same but the bytes differ.
 
-### 4. Speed and memory: cached vs uncached (GPT-2 small, FP32, batch 1 — small-model result)
-![speed](plots/04_speed_memory.png)
+### 2-3. Correctness
 
-| new tokens | uncached | cached | speed-up |
+The from-scratch GPT-2 matches Hugging Face's logits to within 4.6e-5 to 1.1e-4 in FP32, with the same argmax at every position. For comparison, Hugging Face's own model differs between my CPU and GPU by 1.2e-4 to 2.3e-4, so the remaining gap is floating-point noise.
+
+With greedy decoding, the uncached loop, the concat cache, the preallocated cache and HF `generate` all produce the same 200 tokens. Assigning new tokens position 0 instead of the cache length breaks generation at the first decode step.
+
+### 4. Cached vs uncached (GPT-2 small, FP32, batch 1)
+
+![cached vs uncached](plots/04_speed_memory.png)
+
+| New tokens | Uncached | Cached | Speed-up |
 |---|---|---|---|
-| 50 | 434 ms | 453 ms | 0.96× |
-| 200 | 2.77 s | 1.85 s | 1.49× |
-| 500 | 14.9 s | 6.19 s | 2.40× |
+| 50 | 434 ms | 453 ms | 0.96x |
+| 200 | 2.77 s | 1.85 s | 1.49x |
+| 500 | 14.9 s | 6.19 s | 2.40x |
 
-At 50 tokens both cost ~9 ms per token even though uncached does far more maths: the step time is fixed
-overhead (Python + hundreds of small kernel launches), not computation. KV memory matched
-2 × layers × heads × head_dim × tokens × bytes **exactly**; uncached used 3.9× more peak memory at 500 tokens
-(it recomputes logits for every position each step).
+At 50 tokens both versions take about 9 ms per token, even though the uncached one does much more compute. That time is fixed per-step overhead (Python plus a few hundred small kernel launches), so the cache only pays off once the sequence is long. The measured cache size matches 2 x layers x heads x head_dim x tokens x bytes exactly. Without a cache, peak memory at 500 tokens is 3.9x higher, mostly because every step recomputes logits for every position.
 
-### 5. Preallocated cache
+### 5. Preallocated cache vs torch.cat
+
 ![prealloc](plots/05_prealloc_vs_concat.png)
 
-No measurable speed difference (−1 % … +5 %, interleaved timing). The copy saved is < 1 ms per ~10 ms step.
-Preallocation's real value is predictable memory (no growth, no fragmentation) — the idea behind paged KV caches.
+No measurable difference in speed (-1% to +5%, with the two methods timed alternately). The copy that preallocation avoids takes well under 1 ms against a step time of about 10 ms. On a model this small, the benefit is predictable memory use rather than speed.
 
 ### 6. int8 KV cache
+
 ![int8](plots/06_int8_kv_cache.png)
 
-Exactly 74.2 % smaller than FP32 (66 bytes per 64 numbers vs 256). All 1,000 generated tokens (5 prompts × 200)
-identical to the FP32 cache; ~0.6 % reconstruction error. 1.5–2.5× slower here because dequantization is not
-fused into attention.
+Each 64-value vector is stored as 64 int8 values plus an FP16 scale, so 66 bytes instead of 256. That's 74.2% smaller than FP32. Over 5 prompts x 200 tokens, the output was identical to the FP32 cache, with about 0.6% reconstruction error. It runs 1.5-2.5x slower here because the whole cache is dequantized every step instead of inside the attention kernel.
 
-### 7. MHA vs GQA vs MQA (random weights — cost only, no quality claims)
-![gqa](plots/07_mha_gqa_mqa.png)
+### 7. MHA vs GQA vs MQA
 
-KV per token 36 / 12 / 3 KiB. Up to ~1,000 tokens every variant costs ~7.5 ms/step (overhead floor); at 8,192
-tokens decode becomes memory-bound: MHA 17.0, GQA 9.7, MQA 7.7 ms/step. Copying K/V to all heads
-(`repeat_interleave`) is 2.8× slower than MHA — the classic GQA implementation trap.
+![attention variants](plots/07_mha_gqa_mqa.png)
+
+Random weights, so these numbers are about cost only and say nothing about quality. With 12, 4 and 1 KV heads, the KV cache takes 36, 12 and 3 KiB per token. Up to about 1,000 tokens all three sit at roughly 7.5 ms per step. At 8,192 tokens decode is memory-bound and the gap shows: 17.0, 9.7 and 7.7 ms. Implementing GQA with `repeat_interleave` copies K and V back up to 12 heads, which made it 2.8x slower than MHA.
 
 ### 8. Memory calculator
-Reads any HF `config.json` (handles missing `num_key_value_heads` / `head_dim`, MoE, MLA).
-Calculator = measurement for GPT-2 (124.4 M params, 474.7 MiB FP32, 73,728 B KV/token) and Qwen2.5-0.5B
-(494.0 M, 942.3 MiB FP16, 12,288 B KV/token). Param2 from config only: 17.15 B params (matches the Hub to
-0.00002 %), 42 KiB KV/token. Found along the way: the Hub's 137.0 M for GPT-2 includes 12 stored
-1024 × 1024 causal masks.
 
-### 9. Putting it together: KV memory of the same text, per language
-![lang](plots/09_language_kv_cost.png)
+`src/memory_model.py` reads any Hugging Face `config.json` and estimates weight memory and KV bytes per token. It handles missing `num_key_value_heads` and `head_dim`, MoE configs and MLA.
 
-KV memory = tokens × bytes per token, so the two levers multiply. Holding KV/token fixed (right panel),
-Hindi costs 7.3× English under GPT-2's tokenizer and 1.15× under Param2's. With each tokenizer's own model
-(left), Qwen's GQA (2 KV heads) makes its Hindi KV smaller than Param2's despite 3.1× more tokens.
+| Model | Params | Weights | KV/token |
+|---|---|---|---|
+| GPT-2 | 124.4M (measured = calculated) | 474.7 MiB FP32 | 73,728 B FP32 |
+| Qwen2.5-0.5B | 494.0M (measured = calculated) | 942.3 MiB FP16 | 12,288 B FP16 |
+| Param2-17B-A2.4B | 17.15B (config only) | 31.95 GiB BF16 | 42 KiB FP16 |
+
+The Hub lists GPT-2 at 137.0M parameters. The extra 12.6M are the twelve 1024x1024 causal-mask buffers stored in the checkpoint, which aren't trainable weights.
+
+### 9. KV memory per language
+
+![KV per language](plots/09_language_kv_cost.png)
+
+KV memory is tokens times bytes per token, so the tokenizer and the attention layout multiply. At a fixed KV size per token (right panel), Hindi costs 7.3x English with GPT-2's tokenizer and 1.15x with Param2's. With each tokenizer's own model (left panel), Qwen's GQA (2 KV heads) gives it a smaller Hindi KV cache than Param2, even though Qwen needs 3.1x as many tokens.
+
+Per-experiment details, including the predictions I made before running each one, are in `experiments/*/NOTES.md`. Short explanations of the concepts are in `CONCEPTS.md`.
 
 ## Limitations
-These results are honest but narrow. **Speed and memory were measured on GPT-2 small (124 M)** — a tiny,
-English-only model that cannot understand Hindi; we measured only the cost of processing tokens, never output
-quality. Absolute timings come from **one Windows laptop GPU** (RTX 3050 6GB Laptop), where kernel-launch overhead
-is large and clock speed drifts; we used warm-up, synchronization, medians and interleaving, but two timed runs
-were still interrupted by the OS (visible as off-scale maxima), and differences under ~5 % should be read as
-"no measurable difference". Bigger models on server GPUs are more compute- and bandwidth-bound, so the cache
-and GQA benefits would show at shorter lengths there. The language comparison uses **200 sentences from one
-dataset (FLORES+ `dev`)** — formal, encyclopedic text; chat, code-mixed Hinglish or romanized Hindi would tokenize
-differently. The per-language KV numbers for Qwen2.5 and Param2 are **arithmetic** (token counts × config-derived
-KV/token), not measurements of those models running, and View A compares models of very different size and ability.
-Our int8 cache is unfused (slower than FP32), the MHA/GQA/MQA study uses random weights (no quality claims), and
-the int8 agreement test covers only 5 prompts with greedy decoding. Param2's weights were never downloaded.
+
+- **Small model only.** Speed and memory were measured on GPT-2 small (124M). It's an English model and can't understand Hindi, so these numbers cover processing cost only, not output quality.
+- **One laptop GPU.** All timings come from a single laptop GPU on Windows, where kernel-launch overhead is high and clock speeds drift. I used warm-up runs, CUDA sync, medians and interleaved timing, but treat differences under about 5% as noise. Two timed runs were interrupted by the OS; they show up as off-scale maxima and don't affect the medians.
+- **Narrow language data.** The comparison uses 200 sentences of formal text from one dataset. Chat text, Hinglish or romanized Hindi would tokenize differently.
+- **Calculated, not measured.** The Qwen2.5 and Param2 numbers in step 9 come from token counts and config files, not from running those models. The two models also differ a lot in size and capability.
+- **Limited optimization tests.** The int8 cache isn't fused, the attention-variant study uses random weights, and the int8 agreement check only covers 5 prompts with greedy decoding.
