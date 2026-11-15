@@ -147,4 +147,39 @@ always identical: Qwen2.5 failed to round-trip 13.5 % of Hindi sentences. I trac
 its NFC Unicode normaliser: letters like फ़ stored as one code point get split into फ plus a nukta
 sign. It looks identical on screen, but the bytes differ, so exact string matching breaks."
 
+## Experiment 02 — GPT-2 from scratch
+
+**Q1. What are the gotchas when loading Hugging Face GPT-2 weights into your own code?**
+"Three things. HF stores the linear layers as Conv1D with weights shaped input-by-output, so you
+transpose them for nn.Linear. GPT-2 uses the tanh approximation of GELU, not exact GELU. And there's
+no separate output matrix — the output layer reuses the token-embedding matrix, which is called weight tying."
+
+**Q2. Your logits differ from Hugging Face by 1e-4. How do you know it isn't a bug?**
+"I measured the noise floor: Hugging Face's own model differs from itself between CPU and GPU by up
+to 2.3e-4, and mine was always closer than that. At logits around 100, 1e-4 is about 15 float32 steps —
+0.0001 percent. The predicted next token was identical at every position. A real bug like the wrong
+GELU shows up around 1e-3 or much more."
+
+**Q3. Why do GPU and CPU give slightly different answers for the same maths?**
+"Floating-point addition isn't associative: (a+b)+c can differ from a+(b+c) in the last bits. GPU
+kernels split a big sum into chunks and add them in a different order from the CPU. So you compare with
+a tolerance chosen from a measured noise floor, never with exact equality."
+
+## Experiment 03 — KV cache correctness
+
+**Q1. What is a KV cache, and does it change the model's output?**
+"During generation, the keys and values of earlier tokens never change, so we store them instead of
+recomputing them every step. It changes only the amount of work, not the result: my cached and uncached
+versions and Hugging Face's generate produced exactly the same 200 tokens."
+
+**Q2. What's the classic KV-cache bug?**
+"Giving the new token the wrong position id. With a cache you feed in only one token, so if you build
+positions from zero, every new token thinks it's the first word. In my demo the output diverged at the
+very first decode step and collapsed into repeated commas — only 4 percent of tokens matched."
+
+**Q3. How would you test a KV-cache implementation?**
+"Three checks: greedy output equal to the uncached version and to a reference library for a few
+hundred tokens; the cached logits equal a full re-run at each step; and a deliberately broken version must
+fail the test — otherwise the test can't catch the bug."
+
 _(more experiments are added as they run)_

@@ -1,0 +1,14 @@
+$ .\.venv\Scripts\python.exe experiments\03_kv_cache\run.py
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  20%|█▉        | 29/148 [00:00<00:00, 267.08it/s]Loading weights:  49%|████▊     | 72/148 [00:00<00:00, 222.47it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 443.62it/s]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  22%|██▏       | 32/148 [00:00<00:00, 301.88it/s]Loading weights:  43%|████▎     | 63/148 [00:00<00:00, 264.09it/s]Loading weights:  61%|██████    | 90/148 [00:00<00:00, 254.25it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 423.79it/s]
+uncached (ours)                     100.0% identical  first divergence: None
+cached concat (ours)                100.0% identical  first divergence: None
+cached prealloc (ours)              100.0% identical  first divergence: None
+HF generate greedy                  100.0% identical  first divergence: None
+BUGGY: position 0 for new tokens      4.0% identical  first divergence: 1
+
+Correct text :  the arrival of the first Europeans in the region in the 16th century. The first Europeans arrived in the region in the 16th century, and the first Europeans arrived in the region in the 17th
+Buggy text   :  the the,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+saved C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\results\03_kv_equivalence.csv
+
+[exit code 0]

@@ -1,0 +1,16 @@
+$ .\.venv\Scripts\python.exe experiments\02_gpt2_scratch\run.py
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  19%|█▉        | 28/148 [00:00<00:00, 241.75it/s]Loading weights:  36%|███▌      | 53/148 [00:00<00:00, 244.20it/s]Loading weights:  53%|█████▎    | 78/148 [00:00<00:00, 211.35it/s]Loading weights:  68%|██████▊   | 100/148 [00:00<00:00, 145.93it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 250.00it/s]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  20%|██        | 30/148 [00:00<00:00, 268.53it/s]Loading weights:  39%|███▊      | 57/148 [00:00<00:00, 129.30it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 358.99it/s]
+[cpu]  10 tokens  max|diff|=6.10e-05  argmax same=True  HF-vs-itself(CPU/GPU)=1.68e-04  | The quick brown fox jumps over
+[cpu]   7 tokens  max|diff|=7.63e-05  argmax same=True  HF-vs-itself(CPU/GPU)=1.22e-04  | In 1947, India became independ
+[cpu]  78 tokens  max|diff|=6.10e-05  argmax same=True  HF-vs-itself(CPU/GPU)=2.29e-04  | भारत एक विशाल देश है और यहाँ क
+[cuda]  10 tokens  max|diff|=6.87e-05  argmax same=True  HF-vs-itself(CPU/GPU)=1.68e-04  | The quick brown fox jumps over
+[cuda]   7 tokens  max|diff|=4.58e-05  argmax same=True  HF-vs-itself(CPU/GPU)=1.22e-04  | In 1947, India became independ
+[cuda]  78 tokens  max|diff|=1.14e-04  argmax same=True  HF-vs-itself(CPU/GPU)=2.29e-04  | भारत एक विशाल देश है और यहाँ क
+
+Sample (greedy, ours): The meaning of life is not the same as the meaning of death.
+
+The meaning of life is not the same as the meaning of death.
+saved C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\results\02_gpt2_vs_hf.csv
+
+[exit code 0]

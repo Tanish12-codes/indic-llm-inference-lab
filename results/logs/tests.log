@@ -1,0 +1,51 @@
+$ .\.venv\Scripts\python.exe -m pytest tests -v -s
+============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\tanis\OneDrive\Desktop\indic-llm-inference-lab
+configfile: pytest.ini
+plugins: anyio-4.16.0
+collecting ... collected 18 items
+
+tests/test_attention_gqa.py::test_grouped_equals_naive_repeat PASSED
+tests/test_attention_gqa.py::test_kv_projection_shrinks PASSED
+tests/test_gpt2_matches_hf.py::test_logits_match_hf[The quick brown fox jumps over the lazy dog because-cpu] Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  15%|█▍        | 22/148 [00:00<00:00, 209.31it/s]Loading weights:  30%|███       | 45/148 [00:00<00:00, 218.78it/s]Loading weights:  47%|████▋     | 70/148 [00:00<00:00, 229.37it/s]Loading weights:  63%|██████▎   | 93/148 [00:00<00:00, 151.71it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 263.70it/s]
+Loading weights:   0%|          | 0/148 [00:00<?, ?it/s]Loading weights:  18%|█▊        | 27/148 [00:00<00:00, 269.21it/s]Loading weights:  41%|████      | 60/148 [00:00<00:00, 304.79it/s]Loading weights:  61%|██████▏   | 91/148 [00:00<00:00, 197.60it/s]Loading weights: 100%|██████████| 148/148 [00:00<00:00, 348.49it/s]
+
+[cpu] 10 tokens, max |ours - HF| = 6.10e-05 (tol 2.55e-04), max prob diff = 2.6e-06  (logit range -155.3..-31.9)
+PASSED
+tests/test_gpt2_matches_hf.py::test_logits_match_hf[The quick brown fox jumps over the lazy dog because-cuda] 
+[cuda] 10 tokens, max |ours - HF| = 6.87e-05 (tol 2.55e-04), max prob diff = 2.7e-06  (logit range -155.3..-31.9)
+PASSED
+tests/test_gpt2_matches_hf.py::test_logits_match_hf[In 1947, India became independent and-cpu] 
+[cpu] 7 tokens, max |ours - HF| = 7.63e-05 (tol 2.33e-04), max prob diff = 1.1e-06  (logit range -132.6..-27.0)
+PASSED
+tests/test_gpt2_matches_hf.py::test_logits_match_hf[In 1947, India became independent and-cuda] 
+[cuda] 7 tokens, max |ours - HF| = 4.58e-05 (tol 2.33e-04), max prob diff = 1.7e-06  (logit range -132.6..-27.0)
+PASSED
+tests/test_gpt2_matches_hf.py::test_logits_match_hf[\u092d\u093e\u0930\u0924 \u090f\u0915 \u0935\u093f\u0936\u093e\u0932 \u0926\u0947\u0936 \u0939\u0948 \u0914\u0930 \u092f\u0939\u093e\u0901 \u0915\u0908 \u092d\u093e\u0937\u093e\u090f\u0901 \u092c\u094b\u0932\u0940 \u091c\u093e\u0924\u0940 \u0939\u0948\u0902\u0964-cpu] 
+[cpu] 78 tokens, max |ours - HF| = 6.10e-05 (tol 2.01e-04), max prob diff = 4.1e-06  (logit range -100.7..-22.0)
+PASSED
+tests/test_gpt2_matches_hf.py::test_logits_match_hf[\u092d\u093e\u0930\u0924 \u090f\u0915 \u0935\u093f\u0936\u093e\u0932 \u0926\u0947\u0936 \u0939\u0948 \u0914\u0930 \u092f\u0939\u093e\u0901 \u0915\u0908 \u092d\u093e\u0937\u093e\u090f\u0901 \u092c\u094b\u0932\u0940 \u091c\u093e\u0924\u0940 \u0939\u0948\u0902\u0964-cuda] 
+[cuda] 78 tokens, max |ours - HF| = 1.14e-04 (tol 2.01e-04), max prob diff = 7.2e-06  (logit range -100.7..-22.0)
+PASSED
+tests/test_gpt2_matches_hf.py::test_our_error_is_within_hf_noise_floor[The quick brown fox jumps over the lazy dog because] 
+noise floor (HF cpu vs HF gpu) = 1.68e-04;  ours vs HF (gpu) = 6.87e-05
+PASSED
+tests/test_gpt2_matches_hf.py::test_our_error_is_within_hf_noise_floor[In 1947, India became independent and] 
+noise floor (HF cpu vs HF gpu) = 1.22e-04;  ours vs HF (gpu) = 4.58e-05
+PASSED
+tests/test_gpt2_matches_hf.py::test_our_error_is_within_hf_noise_floor[\u092d\u093e\u0930\u0924 \u090f\u0915 \u0935\u093f\u0936\u093e\u0932 \u0926\u0947\u0936 \u0939\u0948 \u0914\u0930 \u092f\u0939\u093e\u0901 \u0915\u0908 \u092d\u093e\u0937\u093e\u090f\u0901 \u092c\u094b\u0932\u0940 \u091c\u093e\u0924\u0940 \u0939\u0948\u0902\u0964] 
+noise floor (HF cpu vs HF gpu) = 2.29e-04;  ours vs HF (gpu) = 1.14e-04
+PASSED
+tests/test_gpt2_matches_hf.py::test_weights_are_tied PASSED
+tests/test_kv_cache_equivalence.py::test_cached_equals_uncached_equals_hf[cpu] PASSED
+tests/test_kv_cache_equivalence.py::test_step_logits_match[cpu] PASSED
+tests/test_kv_cache_equivalence.py::test_position_bug_is_detectable[cpu] PASSED
+tests/test_kv_cache_equivalence.py::test_cached_equals_uncached_equals_hf[cuda] PASSED
+tests/test_kv_cache_equivalence.py::test_step_logits_match[cuda] PASSED
+tests/test_kv_cache_equivalence.py::test_position_bug_is_detectable[cuda] PASSED
+
+======================== 18 passed in 85.17s (0:01:25) ========================
+
+[exit code 0]

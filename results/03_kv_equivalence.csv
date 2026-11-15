@@ -1,0 +1,6 @@
+method,new_tokens,identical_to_uncached_pct,first_divergence,gpu,device,torch_version,model,precision,batch,seq_len,date,os
+uncached (ours),200,100.0,,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,gpt2,fp32,1,210,2026-11-15 11:58,Windows 11
+cached concat (ours),200,100.0,,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,gpt2,fp32,1,210,2026-11-15 11:58,Windows 11
+cached prealloc (ours),200,100.0,,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,gpt2,fp32,1,210,2026-11-15 11:58,Windows 11
+HF generate greedy,200,100.0,,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,gpt2,fp32,1,210,2026-11-15 11:58,Windows 11
+BUGGY: position 0 for new tokens,200,3.999999910593033,1.0,NVIDIA GeForce RTX 3050 6GB Laptop GPU,cuda,2.15.0+cu132,gpt2,fp32,1,210,2026-11-15 11:58,Windows 11

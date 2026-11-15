@@ -53,5 +53,12 @@ A tokenizer that never learned Devanagari spends **less than one character per t
 Param2 makes Hindi almost as cheap as English, but its English costs ~20 % more tokens than GPT-2's
 (vocabulary is a fixed budget). Details: `experiments/01_token_counts/NOTES.md`.
 
+### 2–3. Correctness first
+- **From-scratch GPT-2 = Hugging Face**: max logit difference 4.6e-5 – 1.1e-4 (FP32), always smaller
+  than HF's own CPU-vs-GPU difference (1.2e-4 – 2.3e-4); identical next-token predictions.
+- **KV cache**: greedy uncached = cached (torch.cat) = cached (preallocated) = HF `generate` for
+  200 tokens (100 % identical). Giving new tokens position 0 (the classic bug) breaks the output at
+  the very first decode step (4 % identical, degenerates into ",,,,,").
+
 ## Limitations
 _(written at the end, honestly)_

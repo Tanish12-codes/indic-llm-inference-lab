@@ -26,6 +26,15 @@ def main():
     hf = GPT2LMHeadModel.from_pretrained("gpt2", attn_implementation="eager").eval()
     rows = []
     devices = ["cpu"] + (["cuda"] if torch.cuda.is_available() else [])
+    # Noise floor: how much does HF's OWN model disagree with itself between CPU and GPU?
+    floor = {}
+    if len(devices) == 2:
+        for p in PROMPTS:
+            ids = torch.tensor([tok.encode(p)])
+            with torch.no_grad():
+                c = hf.to("cpu")(ids).logits
+                g = hf.to("cuda")(ids.cuda()).logits.cpu()
+            floor[p] = (c - g).abs().max().item()
     for dev in devices:
         ours.to(dev), hf.to(dev)
         for p in PROMPTS:
@@ -36,9 +45,13 @@ def main():
                          "max_abs_diff": (a - b).abs().max().item(),
                          "mean_abs_diff": (a - b).abs().mean().item(),
                          "argmax_identical": bool(torch.equal(a.argmax(-1), b.argmax(-1))),
+                         "max_prob_diff": (a.softmax(-1) - b.softmax(-1)).abs().max().item(),
+                         "max_abs_logit": b.abs().max().item(),
+                         "hf_cpu_vs_hf_cuda_max_diff": floor.get(p, float("nan")),
                          **run_metadata("gpt2 (ours vs HF eager)", "fp32", 1, ids.shape[1], dev)})
             print(f"[{dev}] {ids.shape[1]:3d} tokens  max|diff|={rows[-1]['max_abs_diff']:.2e}  "
-                  f"argmax same={rows[-1]['argmax_identical']}  | {p[:40]}")
+                  f"argmax same={rows[-1]['argmax_identical']}  "
+                  f"HF-vs-itself(CPU/GPU)={rows[-1]['hf_cpu_vs_hf_cuda_max_diff']:.2e}  | {p[:30]}")
     ids = torch.tensor([tok.encode("The meaning of life is")], device=devices[-1])
     from src.gpt2_scratch import generate_uncached
     print("\nSample (greedy, ours):", tok.decode(generate_uncached(ours, ids, 25)[0]))
